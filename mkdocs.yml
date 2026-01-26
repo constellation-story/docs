@@ -1,0 +1,9 @@
+site_name: Constellation
+site_url: https://constellationstories.fr
+theme: 
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+
+    
