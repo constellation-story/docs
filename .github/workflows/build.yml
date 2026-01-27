@@ -27,8 +27,8 @@ jobs:
 
       - name: Configure Git for private repos
         run: |
-          git config --global url."https://oauth2:${{ secrets.READ_SRC_REPOS }}@github.com/".insteadOf "git@github.com:"
-          git config --global url."https://oauth2:${{ secrets.READ_SRC_REPOS }}@github.com/".insteadOf "ssh://git@github.com/"
+          git config --global url."https://x-access-token:${{ secrets.READ_SRC_REPOS }}@github.com/".insteadOf "git@github.com:"
+          git config --global url."https://x-access-token:${{ secrets.READ_SRC_REPOS }}@github.com/".insteadOf "ssh://git@github.com/"
 
       - name: Set up Python
         uses: actions/setup-python@v5
