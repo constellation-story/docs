@@ -1,9 +1,46 @@
 site_name: Constellation
+site_description: Documentation for Constellation, the collaborative storytelling platform.
 site_url: https://constellationstories.fr
+
+
 theme: 
   name: material
   palette:
     primary: indigo
     accent: indigo
+  features:
+  - content.code.annotate
+  - content.code.copy
+  - content.footnote.tooltips
+  - content.tabs.link
+  - content.tooltips
+  - navigation.footer
+  - navigation.indexes
+  - navigation.instant
+  - navigation.instant.prefetch
+  - navigation.instant.progress
+  - navigation.path
+  - navigation.tabs
+  - navigation.tabs.sticky
+  - navigation.top
+  - navigation.tracking
+  - search.highlight
+  - search.share
+  - search.suggest
+  - toc.follow
 
-    
+
+plugins:
+  search: null
+  multirepo:
+    cleanup: false
+    keep_docs_dir: false
+    repos:
+      - section: Web Application
+        import_url: git@github.com:constellation-story/constellation.git?branch=develop&edit_uri=/blob/develop/&docs_dir=/docs
+      - section: Core API
+        import_url: git@github.com:constellation-story/constellation-backend.git?branch=develop&docs_dir=api_postgres/docs&edit_uri=/blob/develop/api_postgres/docs/
+      - section: Neo4j API
+        import_url: git@github.com:constellation-story/constellation-backend.git?branch=develop&docs_dir=api_neo4j/docs&edit_uri=/blob/develop/api_neo4j/docs/
+      - section: CRDT Server
+        import_url: git@github.com:constellation-story/constellation-backend.git?branch=develop&docs_dir=crdt_server/docs&edit_uri=/blob/develop/crdt_server/docs/
