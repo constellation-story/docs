@@ -37,10 +37,10 @@ plugins:
     keep_docs_dir: false
     repos:
       - section: Web Application
-        import_url: git@github.com:constellation-story/constellation.git?branch=develop&edit_uri=/blob/develop/&docs_dir=/docs
+        import_url: https://github.com/constellation-story/constellation.git?branch=develop&edit_uri=/blob/develop/&docs_dir=/docs
       - section: Core API
-        import_url: git@github.com:constellation-story/constellation-backend.git?branch=develop&docs_dir=api_postgres/docs&edit_uri=/blob/develop/api_postgres/docs/
+        import_url: https://github.com/constellation-story/constellation-backend.git?branch=develop&docs_dir=api_postgres/docs&edit_uri=/blob/develop/api_postgres/docs/
       - section: Neo4j API
-        import_url: git@github.com:constellation-story/constellation-backend.git?branch=develop&docs_dir=api_neo4j/docs&edit_uri=/blob/develop/api_neo4j/docs/
+        import_url: https://github.com/constellation-story/constellation-backend.git?branch=develop&docs_dir=api_neo4j/docs&edit_uri=/blob/develop/api_neo4j/docs/
       - section: CRDT Server
-        import_url: git@github.com:constellation-story/constellation-backend.git?branch=develop&docs_dir=crdt_server/docs&edit_uri=/blob/develop/crdt_server/docs/
+        import_url: https://github.com/constellation-story/constellation-backend.git?branch=develop&docs_dir=crdt_server/docs&edit_uri=/blob/develop/crdt_server/docs/
