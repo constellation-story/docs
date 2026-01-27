@@ -33,7 +33,7 @@ theme:
 plugins:
   search: null
   multirepo:
-    cleanup: false
+    cleanup: true
     keep_docs_dir: false
     repos:
       - section: Web Application
