@@ -1,0 +1,3523 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for Constellation, the collaborative storytelling platform.">
+      
+      
+      
+        <link rel="canonical" href="https://constellationstories.fr/Web-Application/docs/20-PERFORMANCE/">
+      
+      
+        <link rel="prev" href="../19-DEPLOYMENT/">
+      
+      
+        <link rel="next" href="../23-TROUBLESHOOTING/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Performance Guide - Constellation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#performance-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Constellation" class="md-header__button md-logo" aria-label="Constellation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Constellation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Performance Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome to Constellation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Core-API/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Core API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Deployment
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Neo4j-API/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Neo4j API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Web Application
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Constellation" class="md-nav__button md-logo" aria-label="Constellation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Constellation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to Constellation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Architecture/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Core-API/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Core-API/thing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Neo4j-API/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neo4j API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Neo4j API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Neo4j-API/otherthing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Otherthing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Application
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-CAMPAIGN_SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Campaign Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-OVERVIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constellation Front-end Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-PROJECT_OVERVIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Overview: Constellation Front-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-SETUP_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-QUICK_START/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-ARCHITECTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-CODE_STYLE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Style Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-COMPONENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-HOOKS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Hooks Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-SERVICES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-STATE_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Management Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-EDITOR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-TESTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-STYLING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling Guide with Tailwind CSS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-DEPLOYMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-web-vitals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Web Vitals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Web Vitals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-largest-contentful-paint-lcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Largest Contentful Paint (LCP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-interaction-to-next-paint-inp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Interaction to Next Paint (INP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cumulative-layout-shift-cls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Cumulative Layout Shift (CLS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measurement-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measurement Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Measurement Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chrome-devtools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chrome DevTools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lighthouse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lighthouse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-vitals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Vitals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimization-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimization Strategies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimization Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-splitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Splitting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-memoization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Memoization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bundle-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundle Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching Strategies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Caching Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#browser-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Browser Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-string-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query String Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analytics Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-query-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Query Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Query Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#n1-query-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        N+1 Query Prevention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-indexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query Indexing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response Compression
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request Batching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pagination
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lazy Loading
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lazy Loading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#route-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route-Based
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component-Based
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image Lazy Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before Deploy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Performance Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Performance Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slow-initial-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slow Initial Load
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#janky-interactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Janky Interactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-leaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory Leaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bundle-analyzer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundle Analyzer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chrome-devtools_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chrome DevTools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-vitals-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Vitals Library
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23-TROUBLESHOOTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24-FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ - Frequently Asked Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../25-CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing Guidelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QUICK_TEST_REFERENCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧪 Testing Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Setup &amp; Guidelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING_COMPLETE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constellation Frontend - Testing Implementation Complete ✅
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING_SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TEST_TEMPLATE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEST TEMPLATE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_API_VALIDATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zod API Validation Setup - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_QUICKSTART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start - Zod API Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_SETUP_COMPLETE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zod Integration Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-web-vitals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Web Vitals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Web Vitals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-largest-contentful-paint-lcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Largest Contentful Paint (LCP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-interaction-to-next-paint-inp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Interaction to Next Paint (INP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cumulative-layout-shift-cls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Cumulative Layout Shift (CLS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measurement-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measurement Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Measurement Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chrome-devtools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chrome DevTools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lighthouse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lighthouse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-vitals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Vitals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimization-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimization Strategies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimization Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-splitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Splitting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-memoization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Memoization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bundle-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundle Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching Strategies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Caching Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#browser-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Browser Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-string-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query String Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analytics Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-query-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Query Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Query Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#n1-query-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        N+1 Query Prevention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-indexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query Indexing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response Compression
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request Batching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pagination
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lazy Loading
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lazy Loading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#route-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route-Based
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component-Based
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image Lazy Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before Deploy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Performance Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Performance Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slow-initial-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slow Initial Load
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#janky-interactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Janky Interactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-leaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory Leaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bundle-analyzer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundle Analyzer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chrome-devtools_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chrome DevTools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-vitals-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Vitals Library
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Welcome to Constellation
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Web Application
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Docs
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="performance-guide">Performance Guide</h1>
+<p>Optimize and monitor Constellation's performance.</p>
+<h2 id="core-web-vitals">Core Web Vitals</h2>
+<p>Monitor these three key metrics:</p>
+<h3 id="1-largest-contentful-paint-lcp">1. Largest Contentful Paint (LCP)</h3>
+<ul>
+<li><strong>Measures</strong>: Page load speed (when main content is visible)</li>
+<li><strong>Target</strong>: &lt; 2.5 seconds</li>
+<li><strong>Tips</strong>:</li>
+<li>Optimize images with Next.js Image component</li>
+<li>Minimize JavaScript</li>
+<li>Use Server Components for initial load</li>
+<li>Implement code splitting</li>
+</ul>
+<h3 id="2-interaction-to-next-paint-inp">2. Interaction to Next Paint (INP)</h3>
+<ul>
+<li><strong>Measures</strong>: Responsiveness to user interactions</li>
+<li><strong>Target</strong>: &lt; 200 milliseconds</li>
+<li><strong>Tips</strong>:</li>
+<li>Minimize JavaScript execution time</li>
+<li>Defer non-critical JavaScript</li>
+<li>Optimize event handlers</li>
+<li>Use React.memo for expensive components</li>
+</ul>
+<h3 id="3-cumulative-layout-shift-cls">3. Cumulative Layout Shift (CLS)</h3>
+<ul>
+<li><strong>Measures</strong>: Visual stability (unexpected layout changes)</li>
+<li><strong>Target</strong>: &lt; 0.1</li>
+<li><strong>Tips</strong>:</li>
+<li>Set fixed sizes for images and videos</li>
+<li>Avoid inserting content above existing content</li>
+<li>Use transforms instead of changing dimensions</li>
+</ul>
+<hr />
+<h2 id="measurement-tools">Measurement Tools</h2>
+<h3 id="chrome-devtools">Chrome DevTools</h3>
+<pre><code class="language-bash"># Open DevTools (F12)
+# Go to Performance tab
+# Record page load
+# Analyze results
+</code></pre>
+<h3 id="lighthouse">Lighthouse</h3>
+<pre><code class="language-bash"># Built into Chrome DevTools
+# Generates performance report
+# Provides specific recommendations
+# Target: 90+ score
+</code></pre>
+<h3 id="web-vitals">Web Vitals</h3>
+<pre><code class="language-typescript">// src/lib/web-vitals.ts
+import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
+
+export function reportWebVitals(metric: any) {
+  console.log(metric);
+  // Send to analytics service
+}
+
+getCLS(reportWebVitals);
+getFID(reportWebVitals);
+getFCP(reportWebVitals);
+getLCP(reportWebVitals);
+getTTFB(reportWebVitals);
+</code></pre>
+<hr />
+<h2 id="optimization-strategies">Optimization Strategies</h2>
+<h3 id="code-splitting">Code Splitting</h3>
+<pre><code class="language-typescript">// ✅ GOOD - Automatic route-based splitting
+// Each route gets its own bundle
+
+// ✅ GOOD - Manual component splitting
+import dynamic from 'next/dynamic';
+
+const HeavyEditor = dynamic(() =&gt; import('./Editor'), {
+  loading: () =&gt; &lt;div&gt;Loading editor...&lt;/div&gt;,
+});
+
+export function Dashboard() {
+  return (
+    &lt;&gt;
+      &lt;Sidebar /&gt;
+      &lt;HeavyEditor /&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h3 id="image-optimization">Image Optimization</h3>
+<pre><code class="language-typescript">import Image from 'next/image';
+
+// ✅ GOOD - Optimized with Next.js Image
+&lt;Image
+  src=&quot;/image.jpg&quot;
+  alt=&quot;Description&quot;
+  width={800}
+  height={600}
+  priority={false}
+  loading=&quot;lazy&quot;
+  placeholder=&quot;blur&quot;
+  blurDataURL=&quot;data:image/jpeg...&quot;
+/&gt;
+
+// ❌ BAD - Regular img tag
+&lt;img src=&quot;/image.jpg&quot; /&gt;
+</code></pre>
+<h3 id="component-memoization">Component Memoization</h3>
+<pre><code class="language-typescript">import { memo, useMemo, useCallback } from 'react';
+
+// ✅ GOOD - Memoized component
+export const ListItem = memo(function ListItem({ item, onSelect }) {
+  return (
+    &lt;div onClick={() =&gt; onSelect(item)}&gt;
+      {item.name}
+    &lt;/div&gt;
+  );
+});
+
+// ✅ GOOD - Memoized callback
+const handleSelect = useCallback((item) =&gt; {
+  setSelected(item);
+}, []);
+
+// ✅ GOOD - Memoized expensive computation
+const total = useMemo(() =&gt; {
+  return items.reduce((sum, item) =&gt; sum + item.price, 0);
+}, [items]);
+</code></pre>
+<h3 id="bundle-analysis">Bundle Analysis</h3>
+<pre><code class="language-bash"># Analyze bundle size
+npm run build:analyze
+
+# Look for:
+# - Large third-party libraries
+# - Duplicate dependencies
+# - Unused code
+</code></pre>
+<h3 id="server-components">Server Components</h3>
+<pre><code class="language-typescript">// ✅ GOOD - Server Component (no JavaScript sent)
+export default async function Dashboard() {
+  const data = await fetchData();
+  return &lt;div&gt;{data}&lt;/div&gt;;
+}
+
+// ❌ BAD - Client Component (sends all JS to browser)
+'use client';
+export default function Dashboard() {
+  const [data, setData] = useState();
+  useEffect(() =&gt; {
+    fetchData().then(setData);
+  }, []);
+  return &lt;div&gt;{data}&lt;/div&gt;;
+}
+</code></pre>
+<hr />
+<h2 id="caching-strategies">Caching Strategies</h2>
+<h3 id="browser-caching">Browser Caching</h3>
+<pre><code class="language-typescript">// next.config.js
+module.exports = {
+  headers: async () =&gt; {
+    return [
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
+};
+</code></pre>
+<h3 id="data-caching">Data Caching</h3>
+<pre><code class="language-typescript">// Use React cache for per-request deduplication
+import { cache } from 'react';
+
+export const getUser = cache(async (id: string) =&gt; {
+  return apiClient.get(`/users/${id}`);
+});
+
+// Multiple calls in same request only hit API once
+const user1 = await getUser('123');
+const user2 = await getUser('123'); // Cached result
+</code></pre>
+<h3 id="query-string-caching">Query String Caching</h3>
+<pre><code class="language-typescript">// Avoid query strings for static assets
+// ❌ BAD
+&lt;img src=&quot;/image.jpg?v=1&quot; /&gt;
+
+// ✅ GOOD
+&lt;Image src=&quot;/image-v1.jpg&quot; /&gt;
+</code></pre>
+<hr />
+<h2 id="monitoring">Monitoring</h2>
+<h3 id="monitoring-setup">Monitoring Setup</h3>
+<pre><code class="language-typescript">// src/lib/monitoring.ts
+export function trackPerformance() {
+  // Report to analytics service
+  const metrics = {
+    FCP: 0,
+    LCP: 0,
+    INP: 0,
+    CLS: 0,
+  };
+
+  fetch('/api/metrics', {
+    method: 'POST',
+    body: JSON.stringify(metrics),
+  });
+}
+
+// Call on page load
+useEffect(() =&gt; {
+  trackPerformance();
+}, []);
+</code></pre>
+<h3 id="analytics-dashboard">Analytics Dashboard</h3>
+<p>Track:
+- Page load times
+- Core Web Vitals
+- Error rates
+- User interactions
+- API response times</p>
+<hr />
+<h2 id="database-query-optimization">Database Query Optimization</h2>
+<h3 id="n1-query-prevention">N+1 Query Prevention</h3>
+<pre><code class="language-typescript">// ❌ BAD - N+1 queries
+const workspaces = await db.workspace.findMany();
+for (const workspace of workspaces) {
+  const users = await db.user.findMany({
+    where: { workspaceId: workspace.id },
+  });
+}
+
+// ✅ GOOD - Single query with relation
+const workspaces = await db.workspace.findMany({
+  include: { users: true },
+});
+</code></pre>
+<h3 id="query-indexing">Query Indexing</h3>
+<pre><code class="language-typescript">// Add indexes to frequently queried fields
+// In your database schema:
+// CREATE INDEX idx_workspace_user ON workspace(user_id);
+// CREATE INDEX idx_document_workspace ON document(workspace_id);
+</code></pre>
+<hr />
+<h2 id="api-optimization">API Optimization</h2>
+<h3 id="response-compression">Response Compression</h3>
+<pre><code class="language-typescript">// next.config.js
+module.exports = {
+  compress: true, // Enable gzip compression
+};
+</code></pre>
+<h3 id="request-batching">Request Batching</h3>
+<pre><code class="language-typescript">// Group multiple API calls
+async function fetchDashboardData() {
+  const [user, workspaces, notifications] = await Promise.all([
+    apiClient.get('/user'),
+    apiClient.get('/workspaces'),
+    apiClient.get('/notifications'),
+  ]);
+
+  return { user, workspaces, notifications };
+}
+</code></pre>
+<h3 id="pagination">Pagination</h3>
+<pre><code class="language-typescript">// Load data in chunks, not all at once
+const { data: items, total } = await apiClient.get('/items', {
+  params: { page: 1, limit: 20 },
+});
+</code></pre>
+<hr />
+<h2 id="lazy-loading">Lazy Loading</h2>
+<h3 id="route-based">Route-Based</h3>
+<pre><code class="language-typescript">// Automatically lazy loaded by Next.js
+// src/app/heavy-feature/page.tsx
+// Only loads when user navigates to route
+</code></pre>
+<h3 id="component-based">Component-Based</h3>
+<pre><code class="language-typescript">const Editor = dynamic(() =&gt; import('./Editor'), {
+  loading: () =&gt; &lt;Skeleton /&gt;,
+});
+</code></pre>
+<h3 id="image-lazy-loading">Image Lazy Loading</h3>
+<pre><code class="language-typescript">&lt;Image
+  src=&quot;/image.jpg&quot;
+  loading=&quot;lazy&quot; // Load only when visible
+  alt=&quot;Description&quot;
+/&gt;
+</code></pre>
+<hr />
+<h2 id="performance-checklist">Performance Checklist</h2>
+<h3 id="development">Development</h3>
+<ul>
+<li>[ ] Use Chrome DevTools to profile code</li>
+<li>[ ] Check Console for errors/warnings</li>
+<li>[ ] Monitor Network tab for slow requests</li>
+<li>[ ] Test on slow network (DevTools)</li>
+<li>[ ] Test on slow devices (DevTools)</li>
+</ul>
+<h3 id="build">Build</h3>
+<ul>
+<li>[ ] <code>bun run build</code> succeeds</li>
+<li>[ ] <code>npm run build:analyze</code> shows reasonable size</li>
+<li>[ ] No unused dependencies</li>
+<li>[ ] Code splitting working</li>
+</ul>
+<h3 id="before-deploy">Before Deploy</h3>
+<ul>
+<li>[ ] Lighthouse score &gt; 90</li>
+<li>[ ] Bundle size &lt; 200KB (gzipped)</li>
+<li>[ ] No performance warnings</li>
+<li>[ ] Mobile performance tested</li>
+<li>[ ] Real device testing done</li>
+</ul>
+<h3 id="production">Production</h3>
+<ul>
+<li>[ ] Monitor Core Web Vitals</li>
+<li>[ ] Track error rates</li>
+<li>[ ] Monitor API response times</li>
+<li>[ ] Set up alerts for degradation</li>
+<li>[ ] Regular performance reviews</li>
+</ul>
+<hr />
+<h2 id="common-performance-issues">Common Performance Issues</h2>
+<h3 id="slow-initial-load">Slow Initial Load</h3>
+<p><strong>Causes</strong>:
+- Large JavaScript bundle
+- Unoptimized images
+- Render-blocking resources
+- Slow API requests</p>
+<p><strong>Solutions</strong>:
+- Code split and defer non-critical JS
+- Optimize images
+- Use async/defer attributes
+- Implement caching</p>
+<h3 id="janky-interactions">Janky Interactions</h3>
+<p><strong>Causes</strong>:
+- Expensive computations in event handlers
+- Too many re-renders
+- Blocking main thread</p>
+<p><strong>Solutions</strong>:
+- Use <code>requestAnimationFrame</code>
+- Memoize components/functions
+- Move heavy work to Web Workers
+- Debounce expensive operations</p>
+<h3 id="memory-leaks">Memory Leaks</h3>
+<p><strong>Causes</strong>:
+- Event listeners not removed
+- Timers not cleared
+- Circular references</p>
+<p><strong>Solutions</strong>:
+- Clean up in <code>useEffect</code> return
+- Clear timers
+- Remove event listeners</p>
+<hr />
+<h2 id="tools">Tools</h2>
+<h3 id="bundle-analyzer">Bundle Analyzer</h3>
+<pre><code class="language-bash">npm run build:analyze
+</code></pre>
+<h3 id="chrome-devtools_1">Chrome DevTools</h3>
+<ul>
+<li>Performance tab</li>
+<li>Lighthouse</li>
+<li>Network tab</li>
+<li>Coverage tab</li>
+</ul>
+<h3 id="web-vitals-library">Web Vitals Library</h3>
+<pre><code class="language-bash">npm install web-vitals
+</code></pre>
+<hr />
+<h2 id="related-documentation">Related Documentation</h2>
+<ul>
+<li>📊 <strong><a href="../19-DEPLOYMENT/">DEPLOYMENT.md</a></strong> - Deployment optimization</li>
+<li>🏗️ <strong><a href="../04-ARCHITECTURE/">ARCHITECTURE.md</a></strong> - Architecture for performance</li>
+<li>🧪 <strong><a href="../14-TESTING/">TESTING.md</a></strong> - Performance testing</li>
+</ul>
+<hr />
+<p><strong>Last Updated</strong>: January 2026<br />
+<strong>Tools</strong>: <a href="https://web.dev/performance">web.dev/performance</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../19-DEPLOYMENT/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Deployment Guide">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Deployment Guide
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../23-TROUBLESHOOTING/" class="md-footer__link md-footer__link--next" aria-label="Next: Troubleshooting Guide">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Troubleshooting Guide
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.annotate", "content.code.copy", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

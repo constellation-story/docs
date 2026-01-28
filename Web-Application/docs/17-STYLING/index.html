@@ -1,0 +1,3551 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for Constellation, the collaborative storytelling platform.">
+      
+      
+      
+        <link rel="canonical" href="https://constellationstories.fr/Web-Application/docs/17-STYLING/">
+      
+      
+        <link rel="prev" href="../14-TESTING/">
+      
+      
+        <link rel="next" href="../19-DEPLOYMENT/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Styling Guide with Tailwind CSS - Constellation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#styling-guide-with-tailwind-css" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Constellation" class="md-header__button md-logo" aria-label="Constellation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Constellation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Styling Guide with Tailwind CSS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome to Constellation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Core-API/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Core API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Deployment
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Neo4j-API/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Neo4j API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Web Application
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Constellation" class="md-nav__button md-logo" aria-label="Constellation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Constellation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to Constellation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Architecture/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Core-API/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Core-API/thing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Neo4j-API/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neo4j API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Neo4j API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Neo4j-API/otherthing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Otherthing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Application
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-CAMPAIGN_SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Campaign Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-OVERVIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constellation Front-end Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-PROJECT_OVERVIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Overview: Constellation Front-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-SETUP_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-QUICK_START/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-ARCHITECTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-CODE_STYLE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Style Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-COMPONENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-HOOKS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Hooks Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-SERVICES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-STATE_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Management Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-EDITOR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-TESTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling Guide with Tailwind CSS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling Guide with Tailwind CSS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tailwind-css-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tailwind CSS Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#utility-first-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility-First Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responsive-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsive Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Responsive Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breakpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breakpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mobile-first-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mobile-First Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spacing-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spacing Scale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spacing Scale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#color-palette" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Color Palette
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Color Palette">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Colors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dark-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dark Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#typography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typography
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Typography">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#font-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Font Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#font-weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Font Weight
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-height" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line Height
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Text Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flexbox-grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flexbox &amp; Grid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flexbox &amp; Grid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flexbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flexbox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grid
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-component-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Component Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Component Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#card-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Button
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Badge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Form Input
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modaloverlay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modal/Overlay
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arbitrary-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arbitrary Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-css-with-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom CSS with @apply
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pseudo-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pseudo-classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tailwind-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tailwind Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tailwind Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Colors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-spacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Spacing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-breakpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Breakpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Tips
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Anti-patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-classes-safe-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Classes (Safe Way)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theme-customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme Customization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shadcnui-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shadcn/ui Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tailwind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging Tailwind
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging Tailwind">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inspect-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspect Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-styles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Missing Styles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-DEPLOYMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-PERFORMANCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23-TROUBLESHOOTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24-FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ - Frequently Asked Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../25-CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing Guidelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QUICK_TEST_REFERENCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧪 Testing Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Setup &amp; Guidelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING_COMPLETE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constellation Frontend - Testing Implementation Complete ✅
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING_SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TEST_TEMPLATE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEST TEMPLATE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_API_VALIDATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zod API Validation Setup - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_QUICKSTART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start - Zod API Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_SETUP_COMPLETE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zod Integration Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tailwind-css-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tailwind CSS Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#utility-first-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility-First Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responsive-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsive Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Responsive Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breakpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breakpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mobile-first-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mobile-First Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spacing-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spacing Scale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spacing Scale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#color-palette" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Color Palette
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Color Palette">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Colors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dark-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dark Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#typography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typography
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Typography">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#font-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Font Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#font-weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Font Weight
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-height" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line Height
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Text Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flexbox-grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flexbox &amp; Grid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flexbox &amp; Grid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flexbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flexbox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grid
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-component-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Component Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Component Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#card-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Button
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Badge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Form Input
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modaloverlay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modal/Overlay
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arbitrary-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arbitrary Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-css-with-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom CSS with @apply
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pseudo-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pseudo-classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tailwind-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tailwind Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tailwind Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Colors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-spacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Spacing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-breakpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Breakpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Tips
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Anti-patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-classes-safe-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Classes (Safe Way)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theme-customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme Customization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shadcnui-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shadcn/ui Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tailwind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging Tailwind
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging Tailwind">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inspect-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspect Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-styles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Missing Styles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Welcome to Constellation
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Web Application
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Docs
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="styling-guide-with-tailwind-css">Styling Guide with Tailwind CSS</h1>
+<p>Complete guide to styling Constellation with Tailwind CSS.</p>
+<h2 id="tailwind-css-overview">Tailwind CSS Overview</h2>
+<ul>
+<li><strong>Version</strong>: 3.x</li>
+<li><strong>Config</strong>: <code>tailwind.config.ts</code></li>
+<li><strong>PostCSS</strong>: <code>postcss.config.mjs</code></li>
+</ul>
+<hr />
+<h2 id="basic-usage">Basic Usage</h2>
+<h3 id="utility-first-approach">Utility-First Approach</h3>
+<pre><code class="language-typescript">// ✅ GOOD - Use Tailwind utilities
+&lt;div className=&quot;p-4 bg-blue-500 text-white rounded-lg&quot;&gt;
+  Hello World
+&lt;/div&gt;
+
+// ❌ BAD - Custom CSS
+&lt;div style={{ padding: '1rem', backgroundColor: 'blue' }}&gt;
+  Hello World
+&lt;/div&gt;
+</code></pre>
+<h3 id="common-utilities">Common Utilities</h3>
+<pre><code class="language-typescript">// Layout
+&lt;div className=&quot;flex items-center justify-between&quot;&gt;
+  Content
+&lt;/div&gt;
+
+// Spacing
+&lt;div className=&quot;p-4 m-2 gap-3&quot;&gt;
+  Content
+&lt;/div&gt;
+
+// Colors
+&lt;div className=&quot;bg-blue-500 text-white border-red-200&quot;&gt;
+  Content
+&lt;/div&gt;
+
+// Responsive
+&lt;div className=&quot;text-sm md:text-base lg:text-lg&quot;&gt;
+  Content
+&lt;/div&gt;
+
+// Effects
+&lt;div className=&quot;shadow-lg rounded-lg hover:shadow-xl&quot;&gt;
+  Content
+&lt;/div&gt;
+</code></pre>
+<hr />
+<h2 id="responsive-design">Responsive Design</h2>
+<h3 id="breakpoints">Breakpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Breakpoint</th>
+<th>Size</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sm</code></td>
+<td>640px</td>
+<td><code>@media (min-width: 640px)</code></td>
+</tr>
+<tr>
+<td><code>md</code></td>
+<td>768px</td>
+<td><code>@media (min-width: 768px)</code></td>
+</tr>
+<tr>
+<td><code>lg</code></td>
+<td>1024px</td>
+<td><code>@media (min-width: 1024px)</code></td>
+</tr>
+<tr>
+<td><code>xl</code></td>
+<td>1280px</td>
+<td><code>@media (min-width: 1280px)</code></td>
+</tr>
+<tr>
+<td><code>2xl</code></td>
+<td>1536px</td>
+<td><code>@media (min-width: 1536px)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="mobile-first-example">Mobile-First Example</h3>
+<pre><code class="language-typescript">&lt;div className=&quot;
+  w-full           // Full width on mobile
+  md:w-1/2         // Half width on md+ screens
+  lg:w-1/3         // 1/3 width on lg+ screens
+  p-2 md:p-4 lg:p-6  // Adaptive padding
+&quot;&gt;
+  Content
+&lt;/div&gt;
+</code></pre>
+<hr />
+<h2 id="spacing-scale">Spacing Scale</h2>
+<pre><code>Space | Value
+------|-------
+0     | 0px
+1     | 0.25rem (4px)
+2     | 0.5rem (8px)
+3     | 0.75rem (12px)
+4     | 1rem (16px)
+5     | 1.25rem (20px)
+6     | 1.5rem (24px)
+8     | 2rem (32px)
+10    | 2.5rem (40px)
+12    | 3rem (48px)
+16    | 4rem (64px)
+20    | 5rem (80px)
+</code></pre>
+<h3 id="usage">Usage</h3>
+<pre><code class="language-typescript">&lt;div className=&quot;p-4 m-2 gap-3&quot;&gt;
+  {/* padding: 1rem, margin: 0.5rem, gap: 0.75rem */}
+&lt;/div&gt;
+
+&lt;div className=&quot;px-4 py-2&quot;&gt;
+  {/* padding-x: 1rem, padding-y: 0.5rem */}
+&lt;/div&gt;
+
+&lt;div className=&quot;ml-auto&quot;&gt;
+  {/* margin-left: auto (useful for layouts) */}
+&lt;/div&gt;
+</code></pre>
+<hr />
+<h2 id="color-palette">Color Palette</h2>
+<h3 id="basic-colors">Basic Colors</h3>
+<pre><code class="language-typescript">// Gray scale (for text, borders, backgrounds)
+className=&quot;text-gray-900 bg-gray-50 border-gray-200&quot;
+
+// Brand colors (Blue)
+className=&quot;bg-blue-500 hover:bg-blue-600&quot;
+
+// States
+className=&quot;text-green-600&quot;  // Success
+className=&quot;text-red-600&quot;    // Error
+className=&quot;text-yellow-500&quot; // Warning
+className=&quot;text-blue-600&quot;   // Info
+</code></pre>
+<h3 id="dark-mode">Dark Mode</h3>
+<pre><code class="language-typescript">// Enable dark mode in tailwind.config.ts
+export default {
+  darkMode: 'class',
+};
+
+// Usage
+&lt;div className=&quot;bg-white dark:bg-gray-900&quot;&gt;
+  &lt;p className=&quot;text-gray-900 dark:text-white&quot;&gt;Text&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<hr />
+<h2 id="typography">Typography</h2>
+<h3 id="font-sizes">Font Sizes</h3>
+<pre><code class="language-typescript">className=&quot;text-xs&quot;     // 0.75rem
+className=&quot;text-sm&quot;     // 0.875rem
+className=&quot;text-base&quot;   // 1rem
+className=&quot;text-lg&quot;     // 1.125rem
+className=&quot;text-xl&quot;     // 1.25rem
+className=&quot;text-2xl&quot;    // 1.5rem
+className=&quot;text-3xl&quot;    // 1.875rem
+className=&quot;text-4xl&quot;    // 2.25rem
+</code></pre>
+<h3 id="font-weight">Font Weight</h3>
+<pre><code class="language-typescript">className=&quot;font-light&quot;      // 300
+className=&quot;font-normal&quot;     // 400
+className=&quot;font-medium&quot;     // 500
+className=&quot;font-semibold&quot;   // 600
+className=&quot;font-bold&quot;       // 700
+</code></pre>
+<h3 id="line-height">Line Height</h3>
+<pre><code class="language-typescript">className=&quot;leading-tight&quot;    // 1.25
+className=&quot;leading-snug&quot;     // 1.375
+className=&quot;leading-normal&quot;   // 1.5
+className=&quot;leading-relaxed&quot;  // 1.625
+</code></pre>
+<h3 id="text-examples">Text Examples</h3>
+<pre><code class="language-typescript">&lt;h1 className=&quot;text-3xl font-bold&quot;&gt;Heading&lt;/h1&gt;
+&lt;p className=&quot;text-base leading-relaxed text-gray-600&quot;&gt;Paragraph&lt;/p&gt;
+&lt;span className=&quot;text-sm font-semibold text-blue-600&quot;&gt;Label&lt;/span&gt;
+</code></pre>
+<hr />
+<h2 id="flexbox-grid">Flexbox &amp; Grid</h2>
+<h3 id="flexbox">Flexbox</h3>
+<pre><code class="language-typescript">// Container
+&lt;div className=&quot;flex items-center justify-between gap-4&quot;&gt;
+  {/* Flex layout, center items, space between */}
+&lt;/div&gt;
+
+// Directions
+className=&quot;flex&quot;           // row (default)
+className=&quot;flex-col&quot;       // column
+className=&quot;flex-row-reverse&quot;
+className=&quot;flex-col-reverse&quot;
+
+// Alignment
+className=&quot;justify-start&quot;
+className=&quot;justify-center&quot;
+className=&quot;justify-between&quot;
+className=&quot;justify-around&quot;
+className=&quot;justify-evenly&quot;
+
+className=&quot;items-start&quot;
+className=&quot;items-center&quot;
+className=&quot;items-end&quot;
+className=&quot;items-stretch&quot;
+
+className=&quot;gap-4&quot;         // gap between items
+</code></pre>
+<h3 id="grid">Grid</h3>
+<pre><code class="language-typescript">// Container
+&lt;div className=&quot;grid grid-cols-3 gap-4&quot;&gt;
+  {/* 3-column grid with 1rem gap */}
+&lt;/div&gt;
+
+// Responsive grid
+className=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4&quot;
+
+// Grid items
+className=&quot;col-span-2&quot;    // Span 2 columns
+className=&quot;row-span-2&quot;    // Span 2 rows
+</code></pre>
+<hr />
+<h2 id="common-component-patterns">Common Component Patterns</h2>
+<h3 id="card-component">Card Component</h3>
+<pre><code class="language-typescript">&lt;div className=&quot;bg-white rounded-lg shadow-md p-6&quot;&gt;
+  &lt;h3 className=&quot;text-lg font-semibold mb-2&quot;&gt;Title&lt;/h3&gt;
+  &lt;p className=&quot;text-gray-600&quot;&gt;Content&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="button">Button</h3>
+<pre><code class="language-typescript">// Primary
+&lt;button className=&quot;px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition&quot;&gt;
+  Button
+&lt;/button&gt;
+
+// Secondary
+&lt;button className=&quot;px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50&quot;&gt;
+  Button
+&lt;/button&gt;
+
+// Disabled
+&lt;button className=&quot;px-4 py-2 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed&quot;&gt;
+  Button
+&lt;/button&gt;
+</code></pre>
+<h3 id="badge">Badge</h3>
+<pre><code class="language-typescript">// Success
+&lt;span className=&quot;inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm&quot;&gt;
+  Active
+&lt;/span&gt;
+
+// Error
+&lt;span className=&quot;inline-block px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm&quot;&gt;
+  Error
+&lt;/span&gt;
+</code></pre>
+<h3 id="form-input">Form Input</h3>
+<pre><code class="language-typescript">&lt;input
+  type=&quot;text&quot;
+  placeholder=&quot;Enter text&quot;
+  className=&quot;w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500&quot;
+/&gt;
+</code></pre>
+<h3 id="modaloverlay">Modal/Overlay</h3>
+<pre><code class="language-typescript">&lt;div className=&quot;fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center&quot;&gt;
+  &lt;div className=&quot;bg-white rounded-lg p-6 max-w-md&quot;&gt;
+    {/* Modal content */}
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<hr />
+<h2 id="advanced-features">Advanced Features</h2>
+<h3 id="arbitrary-values">Arbitrary Values</h3>
+<pre><code class="language-typescript">// When Tailwind utility doesn't exist
+className=&quot;w-[500px]&quot;
+className=&quot;h-[calc(100vh-80px)]&quot;
+className=&quot;bg-[#1da1f2]&quot;
+className=&quot;top-[117px]&quot;
+</code></pre>
+<h3 id="custom-css-with-apply">Custom CSS with @apply</h3>
+<pre><code class="language-css">/* globals.css */
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
+}
+</code></pre>
+<p>Usage:</p>
+<pre><code class="language-typescript">&lt;button className=&quot;btn-primary&quot;&gt;Click me&lt;/button&gt;
+&lt;div className=&quot;card&quot;&gt;Card content&lt;/div&gt;
+</code></pre>
+<h3 id="pseudo-classes">Pseudo-classes</h3>
+<pre><code class="language-typescript">className=&quot;hover:bg-blue-600&quot;     // On hover
+className=&quot;focus:ring-2&quot;           // On focus
+className=&quot;active:scale-95&quot;        // On active
+className=&quot;disabled:opacity-50&quot;    // When disabled
+className=&quot;group-hover:text-white&quot; // Group hover
+
+// States with :
+className=&quot;even:bg-gray-50&quot;   // Even child
+className=&quot;odd:bg-white&quot;      // Odd child
+className=&quot;first:rounded-t-lg&quot; // First child
+className=&quot;last:rounded-b-lg&quot;  // Last child
+</code></pre>
+<hr />
+<h2 id="tailwind-configuration">Tailwind Configuration</h2>
+<h3 id="custom-colors">Custom Colors</h3>
+<pre><code class="language-typescript">// tailwind.config.ts
+export default {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          50: '#f0f7ff',
+          500: '#0066cc',
+          900: '#001a4d',
+        },
+      },
+    },
+  },
+};
+</code></pre>
+<p>Usage:</p>
+<pre><code class="language-typescript">className=&quot;bg-brand-500 text-brand-900&quot;
+</code></pre>
+<h3 id="custom-spacing">Custom Spacing</h3>
+<pre><code class="language-typescript">export default {
+  theme: {
+    extend: {
+      spacing: {
+        'xs': '0.25rem',
+        'sm': '0.5rem',
+      },
+    },
+  },
+};
+</code></pre>
+<h3 id="custom-breakpoints">Custom Breakpoints</h3>
+<pre><code class="language-typescript">export default {
+  theme: {
+    extend: {
+      screens: {
+        '3xl': '1920px',
+      },
+    },
+  },
+};
+</code></pre>
+<hr />
+<h2 id="performance-tips">Performance Tips</h2>
+<h3 id="best-practices">✅ Best Practices</h3>
+<ul>
+<li>✅ Use Tailwind utilities instead of custom CSS</li>
+<li>✅ Keep class names in templates (not dynamically generated)</li>
+<li>✅ Use responsive prefixes (md:, lg:, etc.)</li>
+<li>✅ Extract repeated patterns with @apply</li>
+<li>✅ Use purge to remove unused styles in production</li>
+</ul>
+<h3 id="anti-patterns">❌ Anti-patterns</h3>
+<ul>
+<li>❌ Dynamically generating class names</li>
+<li>❌ Using inline styles</li>
+<li>❌ Creating custom CSS for common styles</li>
+<li>❌ Using overly nested CSS selectors</li>
+<li>❌ Not using responsive prefixes</li>
+</ul>
+<h3 id="dynamic-classes-safe-way">Dynamic Classes (Safe Way)</h3>
+<pre><code class="language-typescript">// ✅ GOOD - Class names are static
+const buttonClass = isActive 
+  ? 'bg-blue-500' 
+  : 'bg-gray-500';
+
+&lt;button className={buttonClass}&gt;Button&lt;/button&gt;
+
+// ❌ BAD - Dynamic class name generation
+className={`w-${width}`}  // Tailwind can't parse this
+</code></pre>
+<hr />
+<h2 id="theme-customization">Theme Customization</h2>
+<pre><code class="language-typescript">// tailwind.config.ts
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: [
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: '#0066cc',
+        secondary: '#00cc66',
+      },
+      fontFamily: {
+        sans: ['var(--font-sans)'],
+        mono: ['var(--font-mono)'],
+      },
+    },
+  },
+  plugins: [],
+}
+
+export default config
+</code></pre>
+<hr />
+<h2 id="shadcnui-integration">Shadcn/ui Integration</h2>
+<p>Shadcn components use Tailwind. Customize by modifying component files:</p>
+<pre><code class="language-typescript">// Modify button styles in components/ui/Button.tsx
+const buttonVariants = cva(
+  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium',
+  {
+    variants: {
+      variant: {
+        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+        destructive: 'bg-destructive text-destructive-foreground',
+      },
+    },
+  }
+)
+</code></pre>
+<hr />
+<h2 id="debugging-tailwind">Debugging Tailwind</h2>
+<h3 id="inspect-classes">Inspect Classes</h3>
+<p>Use browser dev tools to see applied Tailwind classes:</p>
+<pre><code class="language-bash"># Open browser DevTools → Inspect element
+# Look at computed styles to see Tailwind classes
+</code></pre>
+<h3 id="missing-styles">Missing Styles</h3>
+<p>If styles aren't applying:</p>
+<ol>
+<li>Check class name spelling</li>
+<li>Verify class exists in Tailwind</li>
+<li>Check content paths in tailwind.config.ts</li>
+<li>Rebuild CSS: restart dev server</li>
+</ol>
+<hr />
+<h2 id="related-documentation">Related Documentation</h2>
+<ul>
+<li>🎨 <strong><a href="./">STYLING.md</a></strong> - Advanced styling</li>
+<li>📚 <strong><a href="../06-COMPONENTS/">COMPONENTS.md</a></strong> - Component examples</li>
+<li>📐 <strong><a href="./18-TAILWIND_GUIDE.md">TAILWIND_GUIDE.md</a></strong> - Extended reference</li>
+</ul>
+<hr />
+<p><strong>Last Updated</strong>: January 2026</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../14-TESTING/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Testing Guide">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Testing Guide
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../19-DEPLOYMENT/" class="md-footer__link md-footer__link--next" aria-label="Next: Deployment Guide">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Deployment Guide
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.annotate", "content.code.copy", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

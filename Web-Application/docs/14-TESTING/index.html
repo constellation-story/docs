@@ -1,0 +1,3342 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for Constellation, the collaborative storytelling platform.">
+      
+      
+      
+        <link rel="canonical" href="https://constellationstories.fr/Web-Application/docs/14-TESTING/">
+      
+      
+        <link rel="prev" href="../10-EDITOR/">
+      
+      
+        <link rel="next" href="../17-STYLING/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Testing Guide - Constellation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#testing-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Constellation" class="md-header__button md-logo" aria-label="Constellation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Constellation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Testing Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome to Constellation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Core-API/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Core API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Deployment
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Neo4j-API/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Neo4j API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Web Application
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Constellation" class="md-nav__button md-logo" aria-label="Constellation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Constellation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to Constellation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Architecture/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Core-API/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Core-API/thing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Neo4j-API/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neo4j API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Neo4j API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Neo4j-API/otherthing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Otherthing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Application
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-CAMPAIGN_SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Campaign Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-OVERVIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constellation Front-end Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-PROJECT_OVERVIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Overview: Constellation Front-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-SETUP_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-QUICK_START/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-ARCHITECTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-CODE_STYLE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Style Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-COMPONENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-HOOKS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Hooks Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-SERVICES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-STATE_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Management Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-EDITOR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#testing-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Stack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coverage-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-file-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test File Organization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unit Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Constants
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Component Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-component-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Component Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-with-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing with State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hook-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hook Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-custom-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Custom Hooks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-hooks-with-async-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Hooks with Async Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-mocking-with-msw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Mocking with MSW
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Mocking with MSW">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-msw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup MSW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-api-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing API Calls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Naming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arrange-act-assert-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arrange-Act-Assert Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Isolation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coverage-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-anti-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoid Anti-Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-debug-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable Debug Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-test-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log Test State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage Report
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-testing-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Testing Utilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Testing Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Render
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Helpers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-STYLING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling Guide with Tailwind CSS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-DEPLOYMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-PERFORMANCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23-TROUBLESHOOTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24-FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ - Frequently Asked Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../25-CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing Guidelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QUICK_TEST_REFERENCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧪 Testing Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Setup &amp; Guidelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING_COMPLETE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constellation Frontend - Testing Implementation Complete ✅
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING_SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TEST_TEMPLATE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEST TEMPLATE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_API_VALIDATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zod API Validation Setup - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_QUICKSTART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start - Zod API Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_SETUP_COMPLETE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zod Integration Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#testing-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Stack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coverage-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-file-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test File Organization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unit Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Constants
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Component Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-component-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Component Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-with-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing with State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hook-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hook Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-custom-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Custom Hooks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-hooks-with-async-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Hooks with Async Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-mocking-with-msw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Mocking with MSW
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Mocking with MSW">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-msw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup MSW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-api-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing API Calls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Naming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arrange-act-assert-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arrange-Act-Assert Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Isolation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coverage-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-anti-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoid Anti-Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-debug-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable Debug Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-test-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log Test State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage Report
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-testing-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Testing Utilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Testing Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Render
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Helpers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Welcome to Constellation
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Web Application
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Docs
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="testing-guide">Testing Guide</h1>
+<p>Comprehensive testing strategy and guidelines for Constellation.</p>
+<h2 id="testing-stack">Testing Stack</h2>
+<ul>
+<li><strong>Test Runner</strong>: Vitest 4.0.17</li>
+<li><strong>React Testing</strong>: @testing-library/react 16.3.1</li>
+<li><strong>User Interactions</strong>: @testing-library/user-event 14.6.1</li>
+<li><strong>API Mocking</strong>: MSW 2.12.7</li>
+<li><strong>Coverage</strong>: @vitest/coverage-v8 4.0.17</li>
+</ul>
+<hr />
+<h2 id="running-tests">Running Tests</h2>
+<h3 id="development-mode">Development Mode</h3>
+<pre><code class="language-bash"># Watch mode - re-run on file changes
+bun test
+
+# Watch mode with UI
+bun test:ui
+
+# Single run
+bun test:run
+
+# Generate coverage report
+bun test:coverage
+
+# Coverage for all files
+bun test:coverage-all
+</code></pre>
+<h3 id="coverage-reports">Coverage Reports</h3>
+<p>View HTML coverage report:</p>
+<pre><code class="language-bash">bun test:coverage
+open coverage/index.html
+</code></pre>
+<hr />
+<h2 id="test-file-organization">Test File Organization</h2>
+<pre><code>src/
+├── components/
+│   ├── ui/
+│   │   ├── Button.tsx
+│   │   └── Button.test.tsx
+│   └── ...
+├── hooks/
+│   ├── use-mobile.tsx
+│   └── use-mobile.test.tsx
+├── lib/
+│   ├── utils.ts
+│   └── utils.test.ts
+└── test/
+    ├── mocks/
+    │   ├── server.ts          # MSW server setup
+    │   └── handlers.ts        # API handlers
+    ├── test-utils.tsx         # Custom render
+    └── test-helpers.ts        # Utilities
+</code></pre>
+<hr />
+<h2 id="unit-tests">Unit Tests</h2>
+<h3 id="testing-functions">Testing Functions</h3>
+<pre><code class="language-typescript">// src/lib/utils.ts
+export function formatDate(date: Date, locale: string = 'en-US'): string {
+  return date.toLocaleDateString(locale);
+}
+
+// src/lib/utils.test.ts
+import { describe, it, expect } from 'vitest';
+import { formatDate } from './utils';
+
+describe('formatDate', () =&gt; {
+  it('should format date correctly', () =&gt; {
+    const date = new Date('2024-01-15T00:00:00Z');
+    const result = formatDate(date);
+    expect(result).toContain('2024');
+    expect(result).toContain('1');
+    expect(result).toContain('15');
+  });
+
+  it('should use provided locale', () =&gt; {
+    const date = new Date('2024-01-15');
+    const result = formatDate(date, 'fr-FR');
+    expect(result).toBeDefined();
+  });
+
+  it('should handle edge cases', () =&gt; {
+    const date = new Date(0); // Unix epoch
+    expect(() =&gt; formatDate(date)).not.toThrow();
+  });
+});
+</code></pre>
+<h3 id="testing-constants">Testing Constants</h3>
+<pre><code class="language-typescript">// src/lib/constants.ts
+export const MAX_ATTEMPTS = 3;
+export const API_TIMEOUT = 30000;
+
+// src/lib/constants.test.ts
+import { describe, it, expect } from 'vitest';
+import { MAX_ATTEMPTS, API_TIMEOUT } from './constants';
+
+describe('Constants', () =&gt; {
+  it('should have correct values', () =&gt; {
+    expect(MAX_ATTEMPTS).toBe(3);
+    expect(API_TIMEOUT).toBe(30000);
+  });
+});
+</code></pre>
+<hr />
+<h2 id="component-tests">Component Tests</h2>
+<h3 id="basic-component-test">Basic Component Test</h3>
+<pre><code class="language-typescript">// src/components/common/Button.tsx
+export function Button({ onClick, children }: ButtonProps) {
+  return &lt;button onClick={onClick}&gt;{children}&lt;/button&gt;;
+}
+
+// src/components/common/Button.test.tsx
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { Button } from './Button';
+
+describe('Button', () =&gt; {
+  it('should render with text', () =&gt; {
+    render(&lt;Button&gt;Click me&lt;/Button&gt;);
+    expect(screen.getByText('Click me')).toBeInTheDocument();
+  });
+
+  it('should call onClick handler', async () =&gt; {
+    const user = userEvent.setup();
+    const handleClick = vi.fn();
+
+    render(&lt;Button onClick={handleClick}&gt;Click me&lt;/Button&gt;);
+    await user.click(screen.getByRole('button'));
+
+    expect(handleClick).toHaveBeenCalledOnce();
+  });
+
+  it('should be disabled when prop is set', () =&gt; {
+    render(&lt;Button disabled&gt;Click me&lt;/Button&gt;);
+    expect(screen.getByRole('button')).toBeDisabled();
+  });
+});
+</code></pre>
+<h3 id="testing-with-state">Testing with State</h3>
+<pre><code class="language-typescript">// src/components/Counter.tsx
+export function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Increment&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+// src/components/Counter.test.tsx
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { Counter } from './Counter';
+
+describe('Counter', () =&gt; {
+  it('should increment count', async () =&gt; {
+    const user = userEvent.setup();
+    render(&lt;Counter /&gt;);
+
+    expect(screen.getByText('Count: 0')).toBeInTheDocument();
+
+    const button = screen.getByRole('button', { name: /increment/i });
+    await user.click(button);
+
+    expect(screen.getByText('Count: 1')).toBeInTheDocument();
+  });
+
+  it('should increment multiple times', async () =&gt; {
+    const user = userEvent.setup();
+    render(&lt;Counter /&gt;);
+
+    const button = screen.getByRole('button');
+    await user.click(button);
+    await user.click(button);
+    await user.click(button);
+
+    expect(screen.getByText('Count: 3')).toBeInTheDocument();
+  });
+});
+</code></pre>
+<hr />
+<h2 id="hook-tests">Hook Tests</h2>
+<h3 id="testing-custom-hooks">Testing Custom Hooks</h3>
+<pre><code class="language-typescript">// src/hooks/use-counter.ts
+export function useCounter(initial: number = 0) {
+  const [count, setCount] = useState(initial);
+
+  return {
+    count,
+    increment: () =&gt; setCount(c =&gt; c + 1),
+    decrement: () =&gt; setCount(c =&gt; c - 1),
+    reset: () =&gt; setCount(initial),
+  };
+}
+
+// src/hooks/use-counter.test.ts
+import { describe, it, expect } from 'vitest';
+import { renderHook, act } from '@testing-library/react';
+import { useCounter } from './use-counter';
+
+describe('useCounter', () =&gt; {
+  it('should initialize with default value', () =&gt; {
+    const { result } = renderHook(() =&gt; useCounter());
+    expect(result.current.count).toBe(0);
+  });
+
+  it('should initialize with custom value', () =&gt; {
+    const { result } = renderHook(() =&gt; useCounter(10));
+    expect(result.current.count).toBe(10);
+  });
+
+  it('should increment', () =&gt; {
+    const { result } = renderHook(() =&gt; useCounter());
+
+    act(() =&gt; {
+      result.current.increment();
+    });
+
+    expect(result.current.count).toBe(1);
+  });
+
+  it('should decrement', () =&gt; {
+    const { result } = renderHook(() =&gt; useCounter(5));
+
+    act(() =&gt; {
+      result.current.decrement();
+    });
+
+    expect(result.current.count).toBe(4);
+  });
+
+  it('should reset', () =&gt; {
+    const { result } = renderHook(() =&gt; useCounter(5));
+
+    act(() =&gt; {
+      result.current.increment();
+      result.current.increment();
+    });
+
+    expect(result.current.count).toBe(7);
+
+    act(() =&gt; {
+      result.current.reset();
+    });
+
+    expect(result.current.count).toBe(5);
+  });
+});
+</code></pre>
+<h3 id="testing-hooks-with-async-operations">Testing Hooks with Async Operations</h3>
+<pre><code class="language-typescript">// src/hooks/use-user-data.ts
+export function useUserData(userId: string) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() =&gt; {
+    (async () =&gt; {
+      const data = await fetchUser(userId);
+      setUser(data);
+      setLoading(false);
+    })();
+  }, [userId]);
+
+  return { user, loading };
+}
+
+// src/hooks/use-user-data.test.ts
+import { describe, it, expect, vi } from 'vitest';
+import { renderHook, waitFor } from '@testing-library/react';
+import { useUserData } from './use-user-data';
+
+// Mock the fetch function
+vi.mock('@/src/services/userService', () =&gt; ({
+  fetchUser: vi.fn(),
+}));
+
+describe('useUserData', () =&gt; {
+  it('should load user data', async () =&gt; {
+    vi.mocked(fetchUser).mockResolvedValueOnce({
+      id: '1',
+      name: 'John',
+    });
+
+    const { result } = renderHook(() =&gt; useUserData('1'));
+
+    expect(result.current.loading).toBe(true);
+
+    await waitFor(() =&gt; {
+      expect(result.current.loading).toBe(false);
+    });
+
+    expect(result.current.user).toEqual({ id: '1', name: 'John' });
+  });
+
+  it('should handle different userId', async () =&gt; {
+    vi.mocked(fetchUser).mockResolvedValueOnce({ id: '2', name: 'Jane' });
+
+    const { result, rerender } = renderHook(
+      ({ userId }) =&gt; useUserData(userId),
+      { initialProps: { userId: '1' } }
+    );
+
+    rerender({ userId: '2' });
+
+    await waitFor(() =&gt; {
+      expect(result.current.user?.id).toBe('2');
+    });
+  });
+});
+</code></pre>
+<hr />
+<h2 id="api-mocking-with-msw">API Mocking with MSW</h2>
+<h3 id="setup-msw">Setup MSW</h3>
+<pre><code class="language-typescript">// src/test/mocks/handlers.ts
+import { http, HttpResponse } from 'msw';
+
+export const handlers = [
+  // GET user
+  http.get('/api/users/:id', ({ params }) =&gt; {
+    return HttpResponse.json({
+      id: params.id,
+      name: 'John Doe',
+      email: 'john@example.com',
+    });
+  }),
+
+  // POST create workspace
+  http.post('/api/workspaces', async ({ request }) =&gt; {
+    const body = await request.json();
+    return HttpResponse.json({ id: '123', ...body }, { status: 201 });
+  }),
+
+  // DELETE workspace
+  http.delete('/api/workspaces/:id', ({ params }) =&gt; {
+    return HttpResponse.json({ success: true });
+  }),
+
+  // Error handler
+  http.get('/api/error', () =&gt; {
+    return HttpResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }),
+];
+
+// src/test/mocks/server.ts
+import { setupServer } from 'msw/node';
+import { handlers } from './handlers';
+
+export const server = setupServer(...handlers);
+
+// vitest.setup.ts
+import { beforeAll, afterEach, afterAll } from 'vitest';
+import { server } from './src/test/mocks/server';
+
+beforeAll(() =&gt; server.listen());
+afterEach(() =&gt; server.resetHandlers());
+afterAll(() =&gt; server.close());
+</code></pre>
+<h3 id="testing-api-calls">Testing API Calls</h3>
+<pre><code class="language-typescript">// src/components/UserProfile.test.tsx
+import { describe, it, expect } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
+import { UserProfile } from './UserProfile';
+
+describe('UserProfile', () =&gt; {
+  it('should fetch and display user', async () =&gt; {
+    render(&lt;UserProfile userId=&quot;123&quot; /&gt;);
+
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+
+    await waitFor(() =&gt; {
+      expect(screen.getByText('John Doe')).toBeInTheDocument();
+    });
+
+    expect(screen.getByText('john@example.com')).toBeInTheDocument();
+  });
+
+  it('should handle API errors', async () =&gt; {
+    server.use(
+      http.get('/api/users/:id', () =&gt; {
+        return HttpResponse.json(
+          { error: 'User not found' },
+          { status: 404 }
+        );
+      })
+    );
+
+    render(&lt;UserProfile userId=&quot;999&quot; /&gt;);
+
+    await waitFor(() =&gt; {
+      expect(screen.getByText(/not found/i)).toBeInTheDocument();
+    });
+  });
+});
+</code></pre>
+<hr />
+<h2 id="testing-best-practices">Testing Best Practices</h2>
+<h3 id="test-naming">Test Naming</h3>
+<pre><code class="language-typescript">// ✅ GOOD - Clear, descriptive names
+describe('calculateDiscount', () =&gt; {
+  it('should return 10% discount for premium users', () =&gt; {});
+  it('should return 0% discount for new users', () =&gt; {});
+  it('should throw error for invalid percentage', () =&gt; {});
+});
+
+// ❌ BAD - Vague names
+describe('calculateDiscount', () =&gt; {
+  it('works', () =&gt; {});
+  it('test 1', () =&gt; {});
+  it('error handling', () =&gt; {});
+});
+</code></pre>
+<h3 id="arrange-act-assert-pattern">Arrange-Act-Assert Pattern</h3>
+<pre><code class="language-typescript">describe('UserForm', () =&gt; {
+  it('should submit form with valid data', async () =&gt; {
+    // Arrange
+    const user = userEvent.setup();
+    const handleSubmit = vi.fn();
+    render(&lt;UserForm onSubmit={handleSubmit} /&gt;);
+
+    // Act
+    await user.type(screen.getByLabelText('Name'), 'John');
+    await user.click(screen.getByRole('button', { name: /submit/i }));
+
+    // Assert
+    expect(handleSubmit).toHaveBeenCalledWith({ name: 'John' });
+  });
+});
+</code></pre>
+<h3 id="test-isolation">Test Isolation</h3>
+<pre><code class="language-typescript">// ✅ GOOD - Each test is independent
+describe('TodoList', () =&gt; {
+  it('should add todo', () =&gt; {
+    render(&lt;TodoList /&gt;);
+    // Complete test
+  });
+
+  it('should delete todo', () =&gt; {
+    render(&lt;TodoList /&gt;); // Fresh render
+    // Complete test
+  });
+});
+
+// ❌ BAD - Tests depend on order
+let todos = [];
+describe('TodoList', () =&gt; {
+  it('should add todo', () =&gt; {
+    todos.push({ id: 1, text: 'Todo' });
+  });
+
+  it('should delete todo', () =&gt; {
+    // Depends on previous test
+    expect(todos.length).toBe(1);
+  });
+});
+</code></pre>
+<h3 id="coverage-goals">Coverage Goals</h3>
+<pre><code>Statements: &gt; 80%
+Branches: &gt; 75%
+Functions: &gt; 80%
+Lines: &gt; 80%
+</code></pre>
+<h3 id="avoid-anti-patterns">Avoid Anti-Patterns</h3>
+<pre><code class="language-typescript">// ❌ BAD - Testing implementation details
+it('should call setState', () =&gt; {
+  const setState = vi.fn();
+  render(&lt;Component setState={setState} /&gt;);
+  // Testing setState directly
+});
+
+// ✅ GOOD - Testing user behavior
+it('should display updated text', async () =&gt; {
+  const user = userEvent.setup();
+  render(&lt;Component /&gt;);
+
+  await user.type(input, 'text');
+  expect(screen.getByText('text')).toBeInTheDocument();
+});
+</code></pre>
+<hr />
+<h2 id="debugging-tests">Debugging Tests</h2>
+<h3 id="enable-debug-output">Enable Debug Output</h3>
+<pre><code class="language-typescript">import { render, screen } from '@testing-library/react';
+
+it('should render correctly', () =&gt; {
+  const { debug } = render(&lt;MyComponent /&gt;);
+
+  // Print DOM tree
+  debug();
+
+  // Or specific element
+  debug(screen.getByRole('button'));
+});
+</code></pre>
+<h3 id="log-test-state">Log Test State</h3>
+<pre><code class="language-typescript">import { screen } from '@testing-library/react';
+
+it('should show data', async () =&gt; {
+  render(&lt;Component /&gt;);
+
+  console.log('Rendered queries:', screen.queryAllByRole('button'));
+
+  await waitFor(() =&gt; {
+    console.log('After wait:', screen.getByText('Data'));
+  });
+});
+</code></pre>
+<hr />
+<h2 id="coverage-report">Coverage Report</h2>
+<p>Run coverage to see what needs testing:</p>
+<pre><code class="language-bash">bun test:coverage-all
+
+# View HTML report
+open coverage/index.html
+</code></pre>
+<hr />
+<h2 id="common-testing-utilities">Common Testing Utilities</h2>
+<h3 id="custom-render">Custom Render</h3>
+<pre><code class="language-typescript">// src/test/test-utils.tsx
+import { ReactElement } from 'react';
+import { render, RenderOptions } from '@testing-library/react';
+import { Providers } from '@/src/components/context/Providers';
+
+const customRender = (
+  ui: ReactElement,
+  options?: Omit&lt;RenderOptions, 'wrapper'&gt;
+) =&gt; render(ui, { wrapper: Providers, ...options });
+
+export * from '@testing-library/react';
+export { customRender as render };
+</code></pre>
+<h3 id="test-helpers">Test Helpers</h3>
+<pre><code class="language-typescript">// src/test/test-helpers.ts
+import { waitFor } from '@testing-library/react';
+
+export async function waitForLoadingToFinish() {
+  const loadingElements = document.querySelectorAll('[role=&quot;status&quot;]');
+  return Promise.all(
+    Array.from(loadingElements).map(el =&gt;
+      waitFor(() =&gt; expect(el).not.toBeInTheDocument())
+    )
+  );
+}
+
+export function fillForm(values: Record&lt;string, string&gt;) {
+  // Helper to fill out forms
+}
+</code></pre>
+<hr />
+<h2 id="related-documentation">Related Documentation</h2>
+<ul>
+<li>🏗️ <strong><a href="../04-ARCHITECTURE/">ARCHITECTURE.md</a></strong> - Testing architecture</li>
+<li>📚 <strong><a href="../06-COMPONENTS/">COMPONENTS.md</a></strong> - Component testing examples</li>
+<li>🎣 <strong><a href="../07-HOOKS/">HOOKS.md</a></strong> - Hook testing patterns</li>
+</ul>
+<hr />
+<p><strong>Last Updated</strong>: January 2026</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../10-EDITOR/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Editor Documentation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Editor Documentation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../17-STYLING/" class="md-footer__link md-footer__link--next" aria-label="Next: Styling Guide with Tailwind CSS">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Styling Guide with Tailwind CSS
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.annotate", "content.code.copy", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

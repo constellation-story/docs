@@ -1,0 +1,3541 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for Constellation, the collaborative storytelling platform.">
+      
+      
+      
+        <link rel="canonical" href="https://constellationstories.fr/Web-Application/docs/06-COMPONENTS/">
+      
+      
+        <link rel="prev" href="../05-CODE_STYLE_GUIDE/">
+      
+      
+        <link rel="next" href="../07-HOOKS/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Components Reference - Constellation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#components-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Constellation" class="md-header__button md-logo" aria-label="Constellation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Constellation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Components Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome to Constellation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Core-API/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Core API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Deployment
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Neo4j-API/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Neo4j API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Web Application
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Constellation" class="md-nav__button md-logo" aria-label="Constellation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Constellation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to Constellation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Architecture/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Core-API/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Core-API/thing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Neo4j-API/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neo4j API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Neo4j API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Neo4j-API/otherthing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Otherthing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Application
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-CAMPAIGN_SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Campaign Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-OVERVIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constellation Front-end Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-PROJECT_OVERVIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Overview: Constellation Front-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-SETUP_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-QUICK_START/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-ARCHITECTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-CODE_STYLE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Style Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#component-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Organization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ui-component-library-shadcnui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UI Component Library (Shadcn/ui)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UI Component Library (Shadcn/ui)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Button Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#card-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Form Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#footer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Footer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboard-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dashboard Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dashboardlayout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DashboardLayout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspacecard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WorkspaceCard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statcard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StatCard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editor-components-platejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editor Components (Plate.js)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Editor Components (Plate.js)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plateeditor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlateEditor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editortoolbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EditorToolbar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plate-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plate Plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Admin Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usermanagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UserManagement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contentmoderation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ContentModeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemsettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SystemSettings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graph Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graphviewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GraphViewer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grapheditor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GraphEditor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#form-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Form Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Form Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#userform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UserForm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspaceform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WorkspaceForm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Providers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AuthProvider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspaceprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WorkspaceProvider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#languageprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LanguageProvider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#themeprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ThemeProvider
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-new-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating New Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating New Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test File
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Component Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Do's
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Don'ts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-HOOKS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Hooks Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-SERVICES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-STATE_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Management Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-EDITOR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-TESTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-STYLING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling Guide with Tailwind CSS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-DEPLOYMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-PERFORMANCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23-TROUBLESHOOTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24-FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ - Frequently Asked Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../25-CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing Guidelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QUICK_TEST_REFERENCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧪 Testing Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Setup &amp; Guidelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING_COMPLETE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constellation Frontend - Testing Implementation Complete ✅
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TESTING_SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TEST_TEMPLATE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEST TEMPLATE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_API_VALIDATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zod API Validation Setup - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_QUICKSTART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start - Zod API Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZOD_SETUP_COMPLETE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zod Integration Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#component-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Organization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ui-component-library-shadcnui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UI Component Library (Shadcn/ui)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UI Component Library (Shadcn/ui)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Button Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#card-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Form Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#footer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Footer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboard-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dashboard Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dashboardlayout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DashboardLayout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspacecard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WorkspaceCard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statcard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StatCard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editor-components-platejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editor Components (Plate.js)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Editor Components (Plate.js)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plateeditor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlateEditor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editortoolbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EditorToolbar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plate-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plate Plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Admin Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usermanagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UserManagement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contentmoderation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ContentModeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemsettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SystemSettings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graph Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graphviewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GraphViewer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grapheditor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GraphEditor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#form-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Form Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Form Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#userform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UserForm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspaceform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WorkspaceForm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Providers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AuthProvider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspaceprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WorkspaceProvider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#languageprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LanguageProvider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#themeprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ThemeProvider
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-new-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating New Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating New Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test File
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Component Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Do's
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Don'ts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Welcome to Constellation
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Web Application
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../00-CAMPAIGN_SUMMARY/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Docs
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="components-reference">Components Reference</h1>
+<p>Complete guide to the Constellation component library and patterns.</p>
+<h2 id="component-organization">Component Organization</h2>
+<pre><code>src/components/
+├── ui/                    # Shadcn/ui base components
+├── common/                # Shared across features
+├── admin/                 # Admin-specific components
+├── dashboard/             # Dashboard feature
+├── editor/                # Editor feature
+├── forms/                 # Form components
+├── graph/                 # Graph visualization
+├── mapEditor/             # Map editor
+├── navigation/            # Navigation
+├── plate-ui/              # Editor plugins
+└── context/               # Context providers
+</code></pre>
+<hr />
+<h2 id="ui-component-library-shadcnui">UI Component Library (Shadcn/ui)</h2>
+<p>Base components imported from Shadcn/ui at <code>src/components/ui/</code>.</p>
+<h3 id="available-components">Available Components</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Location</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button</td>
+<td><code>ui/Button</code></td>
+<td>Clickable buttons</td>
+</tr>
+<tr>
+<td>Card</td>
+<td><code>ui/Card</code></td>
+<td>Content containers</td>
+</tr>
+<tr>
+<td>Dialog</td>
+<td><code>ui/Dialog</code></td>
+<td>Modal dialogs</td>
+</tr>
+<tr>
+<td>Form</td>
+<td><code>ui/Form</code></td>
+<td>Form wrapper</td>
+</tr>
+<tr>
+<td>Input</td>
+<td><code>ui/Input</code></td>
+<td>Text input fields</td>
+</tr>
+<tr>
+<td>Select</td>
+<td><code>ui/Select</code></td>
+<td>Dropdown selection</td>
+</tr>
+<tr>
+<td>Tabs</td>
+<td><code>ui/Tabs</code></td>
+<td>Tabbed content</td>
+</tr>
+<tr>
+<td>Alert</td>
+<td><code>ui/Alert</code></td>
+<td>Alert messages</td>
+</tr>
+<tr>
+<td>Badge</td>
+<td><code>ui/Badge</code></td>
+<td>Status labels</td>
+</tr>
+<tr>
+<td>Dropdown</td>
+<td><code>ui/Dropdown</code></td>
+<td>Dropdown menus</td>
+</tr>
+</tbody>
+</table>
+<h3 id="button-component">Button Component</h3>
+<pre><code class="language-typescript">import { Button } from '@/src/components/ui/Button';
+
+// Basic button
+&lt;Button&gt;Click me&lt;/Button&gt;
+
+// Variants
+&lt;Button variant=&quot;destructive&quot;&gt;Delete&lt;/Button&gt;
+&lt;Button variant=&quot;outline&quot;&gt;Secondary&lt;/Button&gt;
+&lt;Button variant=&quot;ghost&quot;&gt;Tertiary&lt;/Button&gt;
+
+// Sizes
+&lt;Button size=&quot;sm&quot;&gt;Small&lt;/Button&gt;
+&lt;Button size=&quot;lg&quot;&gt;Large&lt;/Button&gt;
+
+// States
+&lt;Button disabled&gt;Disabled&lt;/Button&gt;
+&lt;Button isLoading&gt;Loading...&lt;/Button&gt;
+
+// Full width
+&lt;Button className=&quot;w-full&quot;&gt;Full width&lt;/Button&gt;
+</code></pre>
+<h3 id="card-component">Card Component</h3>
+<pre><code class="language-typescript">import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/src/components/ui/Card';
+
+&lt;Card&gt;
+  &lt;CardHeader&gt;
+    &lt;CardTitle&gt;Title&lt;/CardTitle&gt;
+    &lt;CardDescription&gt;Description&lt;/CardDescription&gt;
+  &lt;/CardHeader&gt;
+  &lt;CardContent&gt;
+    Content here
+  &lt;/CardContent&gt;
+&lt;/Card&gt;
+</code></pre>
+<h3 id="form-component">Form Component</h3>
+<pre><code class="language-typescript">import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/src/components/ui/Form';
+import { Input } from '@/src/components/ui/Input';
+
+const formSchema = z.object({
+  email: z.string().email(),
+  name: z.string().min(2),
+});
+
+export function MyForm() {
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+  });
+
+  return (
+    &lt;Form {...form}&gt;
+      &lt;form onSubmit={form.handleSubmit(onSubmit)}&gt;
+        &lt;FormField
+          control={form.control}
+          name=&quot;email&quot;
+          render={({ field }) =&gt; (
+            &lt;FormItem&gt;
+              &lt;FormLabel&gt;Email&lt;/FormLabel&gt;
+              &lt;FormControl&gt;
+                &lt;Input placeholder=&quot;Email&quot; {...field} /&gt;
+              &lt;/FormControl&gt;
+            &lt;/FormItem&gt;
+          )}
+        /&gt;
+      &lt;/form&gt;
+    &lt;/Form&gt;
+  );
+}
+</code></pre>
+<hr />
+<h2 id="common-components">Common Components</h2>
+<h3 id="header">Header</h3>
+<p>Located: <code>src/components/common/Header.tsx</code></p>
+<pre><code class="language-typescript">import { Header } from '@/src/components/common/Header';
+
+&lt;Header /&gt;
+</code></pre>
+<p><strong>Props</strong>: None (uses context for auth state)</p>
+<p><strong>Features</strong>:
+- User menu
+- Logo
+- Navigation links
+- Dark mode toggle</p>
+<h3 id="navigation">Navigation</h3>
+<p>Located: <code>src/components/common/Navigation.tsx</code></p>
+<pre><code class="language-typescript">import { Navigation } from '@/src/components/common/Navigation';
+
+&lt;Navigation /&gt;
+</code></pre>
+<h3 id="footer">Footer</h3>
+<p>Located: <code>src/components/common/Footer.tsx</code></p>
+<pre><code class="language-typescript">import { Footer } from '@/src/components/common/Footer';
+
+&lt;Footer /&gt;
+</code></pre>
+<hr />
+<h2 id="dashboard-components">Dashboard Components</h2>
+<h3 id="dashboardlayout">DashboardLayout</h3>
+<pre><code class="language-typescript">import { DashboardLayout } from '@/src/components/dashboard/DashboardLayout';
+
+&lt;DashboardLayout&gt;
+  {/* Dashboard content */}
+&lt;/DashboardLayout&gt;
+</code></pre>
+<p><strong>Props</strong>:
+- <code>children</code> - Dashboard content</p>
+<h3 id="workspacecard">WorkspaceCard</h3>
+<pre><code class="language-typescript">interface WorkspaceCardProps {
+  workspace: Workspace;
+  onSelect?: (workspace: Workspace) =&gt; void;
+  onDelete?: (workspaceId: string) =&gt; void;
+}
+
+&lt;WorkspaceCard
+  workspace={workspace}
+  onSelect={handleSelect}
+  onDelete={handleDelete}
+/&gt;
+</code></pre>
+<p><strong>Features</strong>:
+- Workspace thumbnail
+- Name and description
+- Last modified date
+- Actions menu</p>
+<h3 id="statcard">StatCard</h3>
+<pre><code class="language-typescript">&lt;StatCard
+  title=&quot;Total Projects&quot;
+  value={42}
+  icon={&lt;ProjectIcon /&gt;}
+  trend=&quot;+12%&quot;
+/&gt;
+</code></pre>
+<hr />
+<h2 id="editor-components-platejs">Editor Components (Plate.js)</h2>
+<h3 id="plateeditor">PlateEditor</h3>
+<p>Main editor component:</p>
+<pre><code class="language-typescript">import { PlateEditor } from '@/src/components/editor/PlateEditor';
+
+&lt;PlateEditor
+  content={content}
+  onChange={handleChange}
+  readOnly={false}
+/&gt;
+</code></pre>
+<p><strong>Props</strong>:
+- <code>content</code> - Initial editor content
+- <code>onChange</code> - Callback on content change
+- <code>readOnly</code> - Disable editing
+- <code>plugins</code> - Custom plugins array</p>
+<h3 id="editortoolbar">EditorToolbar</h3>
+<pre><code class="language-typescript">import { EditorToolbar } from '@/src/components/editor/EditorToolbar';
+
+&lt;EditorToolbar /&gt;
+</code></pre>
+<p><strong>Features</strong>:
+- Text formatting (bold, italic, underline)
+- Lists and indentation
+- Link insertion
+- Code blocks
+- Mentions and emojis</p>
+<h3 id="plate-plugins">Plate Plugins</h3>
+<p>Available plugins in <code>src/components/plate-ui/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BoldPlugin</code></td>
+<td>Bold text formatting</td>
+</tr>
+<tr>
+<td><code>ItalicPlugin</code></td>
+<td>Italic text formatting</td>
+</tr>
+<tr>
+<td><code>UnderlinePlugin</code></td>
+<td>Underline text</td>
+</tr>
+<tr>
+<td><code>CodePlugin</code></td>
+<td>Inline code</td>
+</tr>
+<tr>
+<td><code>BlockquotePlugin</code></td>
+<td>Block quotes</td>
+</tr>
+<tr>
+<td><code>ListPlugin</code></td>
+<td>Ordered/unordered lists</td>
+</tr>
+<tr>
+<td><code>LinkPlugin</code></td>
+<td>Hyperlinks</td>
+</tr>
+<tr>
+<td><code>ImagePlugin</code></td>
+<td>Image insertion</td>
+</tr>
+<tr>
+<td><code>MentionPlugin</code></td>
+<td>@mentions</td>
+</tr>
+<tr>
+<td><code>EmojiPlugin</code></td>
+<td>Emoji picker</td>
+</tr>
+<tr>
+<td><code>SlashCommandPlugin</code></td>
+<td>Slash commands</td>
+</tr>
+<tr>
+<td><code>TablePlugin</code></td>
+<td>Table insertion</td>
+</tr>
+<tr>
+<td><code>CodeBlockPlugin</code></td>
+<td>Code blocks</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="admin-components">Admin Components</h2>
+<h3 id="usermanagement">UserManagement</h3>
+<pre><code class="language-typescript">import { UserManagement } from '@/src/components/admin/UserManagement';
+
+&lt;UserManagement /&gt;
+</code></pre>
+<p><strong>Features</strong>:
+- User list with pagination
+- Create/edit/delete users
+- Role management
+- Search and filter</p>
+<h3 id="contentmoderation">ContentModeration</h3>
+<pre><code class="language-typescript">import { ContentModeration } from '@/src/components/admin/ContentModeration';
+
+&lt;ContentModeration /&gt;
+</code></pre>
+<p><strong>Features</strong>:
+- Review reported content
+- Approve/reject content
+- Flag management</p>
+<h3 id="systemsettings">SystemSettings</h3>
+<pre><code class="language-typescript">import { SystemSettings } from '@/src/components/admin/SystemSettings';
+
+&lt;SystemSettings /&gt;
+</code></pre>
+<p><strong>Features</strong>:
+- Global configuration
+- Feature flags
+- Notification settings</p>
+<hr />
+<h2 id="graph-components">Graph Components</h2>
+<h3 id="graphviewer">GraphViewer</h3>
+<pre><code class="language-typescript">import { GraphViewer } from '@/src/components/graph/GraphViewer';
+
+interface Node {
+  id: string;
+  label: string;
+}
+
+interface Edge {
+  source: string;
+  target: string;
+}
+
+&lt;GraphViewer
+  nodes={nodes}
+  edges={edges}
+  onNodeClick={handleNodeClick}
+  interactive={true}
+/&gt;
+</code></pre>
+<h3 id="grapheditor">GraphEditor</h3>
+<pre><code class="language-typescript">import { GraphEditor } from '@/src/components/graph/GraphEditor';
+
+&lt;GraphEditor
+  graph={graph}
+  onChange={handleChange}
+/&gt;
+</code></pre>
+<hr />
+<h2 id="form-components">Form Components</h2>
+<h3 id="userform">UserForm</h3>
+<pre><code class="language-typescript">import { UserForm } from '@/src/components/forms/UserForm';
+
+&lt;UserForm
+  user={user}
+  onSubmit={handleSubmit}
+  isLoading={false}
+/&gt;
+</code></pre>
+<h3 id="workspaceform">WorkspaceForm</h3>
+<pre><code class="language-typescript">import { WorkspaceForm } from '@/src/components/forms/WorkspaceForm';
+
+&lt;WorkspaceForm
+  workspace={workspace}
+  onSubmit={handleSubmit}
+  isLoading={false}
+/&gt;
+</code></pre>
+<hr />
+<h2 id="context-providers">Context Providers</h2>
+<h3 id="authprovider">AuthProvider</h3>
+<pre><code class="language-typescript">import { AuthProvider } from '@/src/components/context/AuthProvider';
+
+&lt;AuthProvider&gt;
+  &lt;App /&gt;
+&lt;/AuthProvider&gt;
+</code></pre>
+<p><strong>Provides</strong>: Authentication state, user info, login/logout functions</p>
+<h3 id="workspaceprovider">WorkspaceProvider</h3>
+<pre><code class="language-typescript">import { WorkspaceProvider } from '@/src/components/context/WorkspaceProvider';
+
+&lt;WorkspaceProvider&gt;
+  &lt;WorkspaceContent /&gt;
+&lt;/WorkspaceProvider&gt;
+</code></pre>
+<p><strong>Provides</strong>: Current workspace, workspace list, workspace operations</p>
+<h3 id="languageprovider">LanguageProvider</h3>
+<pre><code class="language-typescript">import { LanguageProvider } from '@/src/components/context/LanguageProvider';
+
+&lt;LanguageProvider&gt;
+  &lt;App /&gt;
+&lt;/LanguageProvider&gt;
+</code></pre>
+<p><strong>Provides</strong>: Current language, translation function, language switcher</p>
+<h3 id="themeprovider">ThemeProvider</h3>
+<pre><code class="language-typescript">import { ThemeProvider } from '@/src/components/context/ThemeProvider';
+
+&lt;ThemeProvider&gt;
+  &lt;App /&gt;
+&lt;/ThemeProvider&gt;
+</code></pre>
+<p><strong>Provides</strong>: Current theme, theme switcher</p>
+<hr />
+<h2 id="creating-new-components">Creating New Components</h2>
+<h3 id="component-template">Component Template</h3>
+<pre><code class="language-typescript">// src/components/[feature]/MyNewComponent.tsx
+'use client';
+
+import React from 'react';
+import { Button } from '@/src/components/ui/Button';
+import type { MyComponentProps } from './MyNewComponent.types';
+
+/**
+ * Component description
+ * @param props - Component props
+ * @returns JSX element
+ */
+export function MyNewComponent({ title, onAction }: MyComponentProps) {
+  const [state, setState] = React.useState(false);
+
+  const handleAction = () =&gt; {
+    onAction?.();
+    setState(true);
+  };
+
+  return (
+    &lt;div className=&quot;p-4&quot;&gt;
+      &lt;h2 className=&quot;font-bold&quot;&gt;{title}&lt;/h2&gt;
+      &lt;Button onClick={handleAction}&gt;Click me&lt;/Button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h3 id="types-file">Types File</h3>
+<pre><code class="language-typescript">// src/components/[feature]/MyNewComponent.types.ts
+export interface MyComponentProps {
+  title: string;
+  onAction?: () =&gt; void;
+}
+</code></pre>
+<h3 id="test-file">Test File</h3>
+<pre><code class="language-typescript">// src/components/[feature]/MyNewComponent.test.tsx
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { MyNewComponent } from './MyNewComponent';
+
+describe('MyNewComponent', () =&gt; {
+  it('should render with title', () =&gt; {
+    render(&lt;MyNewComponent title=&quot;Test&quot; /&gt;);
+    expect(screen.getByText('Test')).toBeInTheDocument();
+  });
+
+  it('should call onAction when button clicked', async () =&gt; {
+    const user = userEvent.setup();
+    const handleAction = vi.fn();
+
+    render(&lt;MyNewComponent title=&quot;Test&quot; onAction={handleAction} /&gt;);
+
+    await user.click(screen.getByRole('button'));
+    expect(handleAction).toHaveBeenCalled();
+  });
+});
+</code></pre>
+<hr />
+<h2 id="component-best-practices">Component Best Practices</h2>
+<h3 id="dos">✅ Do's</h3>
+<ul>
+<li>✅ Keep components small and focused</li>
+<li>✅ Extract props to TypeScript interfaces</li>
+<li>✅ Use composition for complex components</li>
+<li>✅ Memoize when performance matters</li>
+<li>✅ Write tests for components</li>
+<li>✅ Document with JSDoc comments</li>
+<li>✅ Use semantic HTML</li>
+<li>✅ Separate concerns (UI, logic, services)</li>
+</ul>
+<h3 id="donts">❌ Don'ts</h3>
+<ul>
+<li>❌ Don't make components too large (&gt; 300 lines)</li>
+<li>❌ Don't mix presentation and business logic</li>
+<li>❌ Don't use inline styles</li>
+<li>❌ Don't pass too many props (&gt; 5)</li>
+<li>❌ Don't use <code>any</code> types</li>
+<li>❌ Don't hardcode strings (use i18n)</li>
+<li>❌ Don't make API calls in render</li>
+<li>❌ Don't forget loading/error states</li>
+</ul>
+<hr />
+<h2 id="related-documentation">Related Documentation</h2>
+<ul>
+<li>🏗️ <strong><a href="../04-ARCHITECTURE/">ARCHITECTURE.md</a></strong> - Component architecture</li>
+<li>🎣 <strong><a href="../07-HOOKS/">HOOKS.md</a></strong> - Custom hooks</li>
+<li>🧪 <strong><a href="../14-TESTING/">TESTING.md</a></strong> - Component testing</li>
+<li>🎨 <strong><a href="../17-STYLING/">STYLING.md</a></strong> - Styling components</li>
+</ul>
+<hr />
+<p><strong>Last Updated</strong>: January 2026</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../05-CODE_STYLE_GUIDE/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Code Style Guide">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Code Style Guide
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../07-HOOKS/" class="md-footer__link md-footer__link--next" aria-label="Next: Custom Hooks Reference">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Custom Hooks Reference
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.annotate", "content.code.copy", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
