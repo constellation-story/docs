@@ -18,7 +18,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -41,7 +41,10 @@ jobs:
 
       - name: Build documentation
         run: |
-          uvx --from mkdocs --with mkdocs-material --with mkdocs-multirepo-plugin  mkdocs build
+          uvx --from mkdocs \
+            --with mkdocs-material \
+            --with mkdocs-multirepo-plugin \
+            mkdocs build
 
       - name: Push to artifact branch
         uses: peaceiris/actions-gh-pages@v4
