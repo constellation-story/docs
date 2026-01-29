@@ -86,3 +86,5 @@ plugins:
         import_url: https://github.com/constellation-story/constellation-backend.git?branch=develop&docs_dir=api_neo4j/docs&edit_uri=/blob/develop/api_neo4j/docs/
       - section: CRDT Server
         import_url: https://github.com/constellation-story/constellation-backend.git?branch=develop&docs_dir=crdt_server/docs&edit_uri=/blob/develop/crdt_server/docs/
+      - section: SSE Server
+        import_url: https://github.com/constellation-story/constellation-backend.git?branch=develop&docs_dir=sse_server/docs&edit_uri=/blob/develop/sse_server/docs/
