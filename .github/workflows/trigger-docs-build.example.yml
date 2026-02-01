@@ -1,0 +1,23 @@
+# Example workflow for subrepositories to trigger docs build
+# Add this to your subrepository's .github/workflows/ folder
+
+name: Trigger Documentation Build
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - 'docs/**'
+      - 'README.md'
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger docs repository build
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.DOCS_TRIGGER_TOKEN }}
+          repository: constellation-story/docs
+          event-type: docs-updated

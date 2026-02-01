@@ -1,21 +1,28 @@
 # Architecture Overview
 
-Constellation is built of a distributed system with specialized microservices.
-Each service handles a specific aspect of the platform: general purpose data
-persistence, narrative relationships as graph, real-time collaboration editing,
-and the web application itself.
+Constellation is built as a distributed system with specialized microservices.
+Each service handles a specific aspect of the platform: general-purpose data
+persistence, narrative relationships as a graph, real-time collaborative editing,
+live notifications, and the web application itself.
+
+## System Diagram
+
+...
 
 ## System Components
 
-### Web Application (frontend)
+### Web Application (Frontend)
 
-This is the web client. The interface to be seen and interracted by users.
-It had both the role of being the public forefront of the product and the direct
-application for the product.
+The web client provides the user-facing interface for all interactions with the platform.
+It serves as both the public showcase and the primary application interface.
 
-Showcase, account creation, project managment, collaborative editing,
-narrative enrichisment, etc... Are some of the main responsabilities of the
-application through interracting with the user interface.
+**Key Responsibilities:**
+
+- Showcase and account creation
+- Project management
+- Collaborative text editing
+- Narrative enrichment tools (elements, relationships, maps)
+- File management and access control UI
 
 #### Technical Stack
 
@@ -34,36 +41,39 @@ application through interracting with the user interface.
 
 The Core API is the main backend service responsible for handling business logic
 and persisting data. It has a multi-responsibility role as it manages accounts,
-projects, attachments, files, access and many more.
+projects, attachments, files, access control, and much more.
 
-Under the hood it does all this by handling a PostgreSQL database instance.
+Under the hood, it manages a PostgreSQL database instance for reliable relational
+data storage.
 
 #### Technical Stack
 
-- **FastAPI** - excellent type inting and validation using **Pydantic**,
+- **FastAPI** - Excellent type hinting and validation using **Pydantic**,
   built-in async support, automatic OpenAPI documentation
-- **SQLModel** - fusion of **Pydantic** features with the **SQLAlchemy** ORM for
+- **SQLModel** - Fusion of **Pydantic** features with the **SQLAlchemy** ORM for
   managing both data schemas and database models
-- **Pytest** - de-facto standard framework for testing in modern Python
-- **PostgreSQL**
+- **Pytest** - De-facto standard framework for testing in modern Python
+- **PostgreSQL** - Robust relational database for structured data
 
 ### Graph API
 
-The Graph API, as it's name indicates, is responsible for handling the knowledge
+The Graph API, as its name indicates, is responsible for handling the knowledge
 graph of a universe project. It holds information about `elements`, the concept
-representing the unit of a universe.
+representing the unit of a universe (characters, locations, events, etc.).
 
-It does so by managing a Neo4J database.
+It manages a Neo4j database to efficiently store and query complex relationships
+between narrative elements.
 
 #### Technical Stack
 
-- **FastAPI** - excellent type inting and validation using **Pydantic**,
+- **FastAPI** - Excellent type hinting and validation using **Pydantic**,
   built-in async support, automatic OpenAPI documentation
+- **Neo4j** - Graph database optimized for relationship-heavy queries
 
 
 ### CRDT Server
 
-The Conflict-free Replicated Data Type, or CRDT Server is the service
+The Conflict-free Replicated Data Type, or CRDT Server, is the service
 responsible for solving multi-collaborator conflicts when editing text files
 live.
 
@@ -72,14 +82,15 @@ saving collaborative text documents.
 
 #### Technical Stack
 
-- **Hocusposcus** - The CRDT Yjs WebSocket backend for conflict-free real-time
+- **Hocuspocus** - The CRDT Yjs WebSocket backend for conflict-free real-time
   collaboration 
 
 ### SSE Server
 
-The SSE Server is responsible for serving real-time updates to web clients in
-order to dynamically update UI.
+The SSE Server is responsible for serving real-time updates to web clients
+in order to dynamically update the UI with notifications and live changes.
 
 #### Technical Stack
 
-- **Starlette SSE** - ...
+- **Starlette SSE** - Server-Sent Events implementation for real-time server-to-client
+  communication
