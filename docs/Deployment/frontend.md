@@ -11,7 +11,7 @@ Dokploy manages the deployment process, including pulling the repository, buildi
 The environment variables required for the frontend deployment should be configured in the Dokploy dashboard.
 
 ```mermaid
-flowchart LR
+flowchart TD
     Dev[Developer pushes code] -->|push| Repo[(Git Repository)]
 
     Repo -->|watch main| DokployProd[Dokploy<br/>Production]

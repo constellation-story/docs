@@ -11,7 +11,7 @@ After that, Dokploy is notified to deploy the changed services.
 Once notified, Dokploy pulls the images from GHCR with the corresponding tags and restarts the Docker containers on the server.
 
 ```mermaid
-flowchart LR
+flowchart TD
     Dev[Developer pushes code] -->|push| Repo[(Git Repository)]
 
     Repo -->|push main| GHAProd[GitHub Actions<br/>Production]
