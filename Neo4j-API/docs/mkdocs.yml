@@ -1,0 +1,120 @@
+site_name: Constellation-Back-End-Documentation
+
+theme:
+  name: material
+  icon:
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+  features:
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - navigation.tabs
+    - navigation.tracking
+    - navigation.indexes
+    - navigation.sections
+    - navigation.top
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: indigo
+      accent: indigo
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: indigo
+      accent: indigo
+
+markdown_extensions:
+  - pymdownx.extra:
+      toc:
+        permalink: true
+      highlight:
+        linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+
+repo_name: constellation-story/constellation-backend
+repo_url: https://github.com/constellation-story/constellation-backend
+
+nav:
+  - Introduction:
+      - Overview: index.md
+      - Purpose: purpose.md
+      - Run Locally: run_locally.md
+  - Database Schema:
+      - Overview: database_schema/overview.md
+      - Tables:
+          - Users Table: database_schema/tables/users.md
+          - Constellations Table: database_schema/tables/constellations.md
+          - Files Table: database_schema/tables/files.md
+          - Images Table: database_schema/tables/images.md
+          - User_Constellation Table: database_schema/tables/user_constellation.md
+          - Comments Table: database_schema/tables/comments.md
+      - Relationships: database_schema/relationships.md
+      - Indexes: database_schema/indexes.md
+  - Neo4j API Endpoints:
+      - Overview: neo4j_api_endpoints/overview.md
+      - Node Endpoints: neo4j_api_endpoints/nodes.md
+      - Link Endpoints: neo4j_api_endpoints/links.md
+      - Search Endpoints: neo4j_api_endpoints/search.md
+      - Debug Endpoints: neo4j_api_endpoints/debug.md
+  - Postgres API Endpoints:
+      - Overview: postgres_api_endpoints/overview.md
+      - Users Endpoints: postgres_api_endpoints/users.md
+      - Constellations Endpoints: postgres_api_endpoints/constellations.md
+      - Files Endpoints: postgres_api_endpoints/files.md
+      - Images Endpoints: postgres_api_endpoints/images.md
+      - Comments Endpoints: postgres_api_endpoints/comments.md
+      - Debug Endpoints: postgres_api_endpoints/debug.md
+  - SSE Server:
+      - Overview: sse_server/overview.md
+      - API: sse_server/api.md
+  - CRDT Server:
+      - Overview: crdt_server/overview.md
+  - RAG AI:
+      - Overview: rag_ai/overview.md
+      - API: rag_ai/api.md
+      - Structure: rag_ai/structure.md
+  - Testing:
+      - Overview: testing/overview.md
+      # - Unit Tests: testing/unit_tests.md
+      # - Integration Tests: testing/integration_tests.md
+      # - Test Coverage: testing/test_coverage.md
+  - Deployment:
+      - Overview: deployment/overview.md
+      - GitHub Actions: deployment/github_actions.md
+      # - Docker: deployment/docker.md
+  # - Troubleshooting:
+  #     - Common Issues: troubleshooting/common_issues.md
+  #     - FAQ: troubleshooting/faq.md
+  # - Contributing:
+  #     - Overview: contributing/overview.md
+  #     - Guidelines: contributing/guidelines.md
+  #     - How to Contribute: contributing/how_to_contribute.md
+  # - Appendix:
+  #     - SQL Scripts: appendix/sql_scripts.md
+  #     - Configuration Files: appendix/configuration_files.md
